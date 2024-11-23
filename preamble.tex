@@ -1,0 +1,218 @@
+%%=== comment these 2 lines when using LuaLaTeX ===%%
+%~ \usepackage[T1]{fontenc}
+%~ \usepackage[utf8]{inputenc}\
+%%======================%%
+\usepackage[english]{babel}
+\usepackage{lmodern}
+%~ \usepackage{natbib}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{ulem}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{enumitem}
+\usepackage{bigdelim}
+\usepackage[hyperref]{xcolor}
+\usepackage[colorlinks,linktocpage=true,plainpages=false,breaklinks=true,%
+urlcolor=darkgray,citecolor=blue,linkcolor=darkgray,filecolor=teal]{hyperref}
+%%=== using chicago biblatex ===%%
+%% Do not forget to disable natbib above.
+\usepackage[autostyle]{csquotes}
+\usepackage[authordate,strict,natbib,backend=biber,autolang=none,%
+bibencoding=latin1,booklongxref=bib,compresspages]{biblatex-chicago}
+\bibliography{bibliography}
+%
+%%=== custom counters ===%%
+\newcounter{nipgrp}
+\newcounter{convnum}
+%%=== commands new/renewed/define ===%%
+\newcommand{\smallindent}{\hspace{3mm}}
+\newcommand{\pali}[1]{\textit{#1}}
+\newcommand{\palibf}[1]{\textit{\bfseries #1}}
+%% marginal notes are not used in this version
+%~ \newcommand{\onmargin}[1]{\marginpar{\RaggedRight\textcolor{blue}{$\triangleright$#1}}}
+%~ \newcommand{\palimg}[1]{\pali{#1}\onmargin{\pali{#1}}}
+\newcommand{\replacewith}[2]{\xout{#1}$\rightarrow$#2}
+\newcommand{\remove}[1]{\sout{#1}}
+\newcommand{\pchangeto}[2]{\pali{#1} $\rightarrow$ \pali{#2}}
+\newcommand{\texthl}[1]{\textcolor{blue}{#1}}
+\newcommand{\headhl}[1]{\textit{#1}}
+\newcommand{\palisample}[1]{%
+	\begin{center}
+	\large \itshape #1
+	\end{center}
+}
+\newcommand{\sampleor}[1][or]{\\\textup{\normalsize #1}\\}
+\newcommand{\seprule}{%
+	\begin{center}
+	\rule{0.4\linewidth}{0.6pt}
+	\end{center}
+}
+%%=== used with enumitem ===%%
+\newlist{answerkey}{enumerate}{1}
+\setlist[answerkey]{
+	label=\arabic*.,
+	ref=\arabic*,
+	itemsep=0ex,
+	parsep=0ex,
+	font=\upshape,
+	before={\RaggedRight\itshape}
+}
+%%=== used in longtable ===%%
+\newcommand{\ltblcontinuedbreak}[1]{%
+	\multicolumn{#1}{r}{Continued on the next page\ldots}\\
+}
+%%=== used in appendix ===%%
+%== set vertical space
+\setlength\LTpre{0pt}
+%~ \setlength\LTpost{0pt}
+%
+%== used in vocabulary
+\newenvironment{vocabNtable}[1]{\footnotesize%
+	\begin{longtable}{|%
+	>{\raggedright\arraybackslash}p{0.33\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.3\linewidth}%
+	>{\centering\arraybackslash}p{0.09\linewidth}%
+	>{\centering\arraybackslash}p{0.09\linewidth}|}%
+	\multicolumn{4}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1}\\*
+	\hline
+		\bfseries\upshape English & \bfseries\upshape P\=ali & \bfseries\upshape G. & \bfseries\upshape Abh. \\
+	\hline
+	\endfirsthead
+	\multicolumn{4}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1 (contd\ldots)}\\*
+	\hline
+		\bfseries\upshape English & \bfseries\upshape P\=ali & \bfseries\upshape G. & \bfseries\upshape Abh. \\
+	\hline
+	\endhead
+	\hline
+	\ltblcontinuedbreak{4}
+	\endfoot
+	\hline
+	\endlastfoot
+}{\hline\end{longtable}}
+
+\newenvironment{vocabTCtable}[1]{\footnotesize%
+	\begin{longtable}{|%
+	>{\raggedright\arraybackslash}p{0.35\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.35\linewidth}%
+	>{\centering\arraybackslash}p{0.15\linewidth}|}%
+	\multicolumn{3}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1}\\*
+	\hline
+	\bfseries\upshape English & \bfseries\upshape P\=ali & \bfseries\upshape Abh. \\
+	\hline
+	\endfirsthead
+	\multicolumn{3}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1 (contd\ldots)}\\*
+	\hline
+	\bfseries\upshape English & \bfseries\upshape P\=ali & \bfseries\upshape Abh. \\
+	\hline
+	\endhead
+	\hline
+	\ltblcontinuedbreak{3}
+	\endfoot
+	\hline
+	\endlastfoot
+}{\hline\end{longtable}}
+%
+\newenvironment{vocabVtable}[1]{\footnotesize%
+	\begin{longtable}{|%
+	>{\raggedright\arraybackslash}p{0.2\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.13\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.14\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}|}%
+	\multicolumn{5}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1}\\*
+	\hline
+	\bfseries\upshape English & \bfseries\upshape dict. &  \bfseries\upshape aor. & \bfseries\upshape p.p. & \bfseries\upshape abs. \\
+	\hline
+	\endfirsthead
+	\multicolumn{5}{@{}p{0.8\linewidth}@{}}{\small\bfseries #1 (contd\ldots)}\\*
+	\hline
+	\bfseries\upshape English & \bfseries\upshape dict. &  \bfseries\upshape aor. & \bfseries\upshape p.p. & \bfseries\upshape abs. \\
+	\hline
+	\endhead
+	\hline
+	\ltblcontinuedbreak{5}
+	\endfoot
+	\hline
+	\endlastfoot
+}{\hline\end{longtable}}
+%
+%== used in declensional paradigms
+\newenvironment{decltable}[1]{\footnotesize%
+	\begin{longtable}{|p{0.12\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.45\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.3\linewidth}|}%
+	\multicolumn{3}{@{}p{0.8\linewidth}@{}}{\small #1}\\*
+	\hline
+	\bfseries\upshape case & \bfseries\upshape sg. & \bfseries\upshape pl.\\
+	\hline
+}{\hline\end{longtable}}
+\newenvironment{listtableE}[1]{\footnotesize%
+	\begin{longtable}{|*{8}{>{\footnotesize\itshape}p{0.082\linewidth}}|}
+	\multicolumn{8}{@{}p{0.8\linewidth}@{}}{\small #1}\\*
+	\hline
+}{\hline\end{longtable}}
+\newenvironment{listtableF}[1]{\footnotesize%
+	\begin{longtable}{|*{5}{>{\footnotesize\itshape}p{0.156\linewidth}}|}
+	\multicolumn{5}{@{}p{0.8\linewidth}@{}}{\small #1}\\*
+	\hline
+}{\hline\end{longtable}}
+\newenvironment{listtableT}[1]{\footnotesize%
+	\begin{longtable}{|>{\footnotesize\itshape}p{0.12\linewidth}>{\footnotesize}p{0.8\linewidth}|}
+	\multicolumn{2}{@{}p{0.8\linewidth}@{}}{\small #1}\\*
+	\hline
+}{\hline\end{longtable}}
+%== used in verbal conjugations
+\newenvironment{conjtable}[1]{\footnotesize%
+	\begin{longtable}{|p{0.12\linewidth}|%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}|%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.15\linewidth}|}%
+	\multicolumn{5}{@{}p{0.8\linewidth}@{}}{\small #1}\\*
+	\hline
+	\bfseries Person & \multicolumn{2}{c|}{\bfseries\itshape Parassapada} & \multicolumn{2}{c|}{\bfseries\itshape Attanopada} \\
+	\cline{2-5}
+	& \bfseries\upshape sg. & \bfseries\upshape pl. & \bfseries\upshape sg. & \bfseries\upshape pl. \\
+	\hline
+}{\hline\end{longtable}}
+\newenvironment{conjextable}{%
+	\bigskip
+	\begin{longtable}{@{}%
+	>{\raggedright\arraybackslash}p{0.05\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.4\linewidth}%
+	>{\raggedright\arraybackslash\itshape}p{0.4\linewidth}@{}}%
+	\toprule
+	\bfseries Per. & \bfseries\upshape Singular & \bfseries\upshape Plural \\
+	\midrule
+}{\toprule\end{longtable}}
+%%=== For footnotes ===%%
+\deffootnote[5mm]{0em}{1em}{%
+  \textsuperscript{\thefootnotemark}%
+}
+%%=== Making equal side margins ===%%
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+%%==============%%
+\hypersetup{
+	pdfinfo={
+		Title={Pali for New Learners},
+		Author={J. R. Bhaddacak},
+		Subject={Pali language},
+		Keywords={Pali;Theravada;Buddhism}
+	}
+}
+%%==============%%
+%~ \includeonly{title,copyright,preface,abbrev}
+%%==============%%
+\begin{document}
+\normalem
+\frontmatter
+
